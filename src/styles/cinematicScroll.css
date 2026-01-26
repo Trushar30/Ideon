@@ -1,0 +1,424 @@
+/* ===================================
+   CINEMATIC SCROLL ANIMATIONS
+   Film-like scroll experience
+   =================================== */
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.scroll-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--scroll-progress, 0%);
+    background: linear-gradient(90deg, #ff3366, #7c3aed);
+    transition: width 0.1s linear;
+}
+
+/* Base Cinematic Reveal */
+[data-reveal] {
+    opacity: 0;
+    transition:
+        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+}
+
+/* Reveal Directions */
+[data-reveal="up"] {
+    transform: translateY(80px);
+}
+
+[data-reveal="up"].revealed {
+    transform: translateY(0);
+}
+
+[data-reveal="down"] {
+    transform: translateY(-80px);
+}
+
+[data-reveal="down"].revealed {
+    transform: translateY(0);
+}
+
+[data-reveal="left"] {
+    transform: translateX(-80px);
+}
+
+[data-reveal="left"].revealed {
+    transform: translateX(0);
+}
+
+[data-reveal="right"] {
+    transform: translateX(80px);
+}
+
+[data-reveal="right"].revealed {
+    transform: translateX(0);
+}
+
+[data-reveal="scale"] {
+    transform: scale(0.85);
+}
+
+[data-reveal="scale"].revealed {
+    transform: scale(1);
+}
+
+[data-reveal="fade"] {
+    transform: none;
+}
+
+/* Cinematic Class */
+.cinematic-reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinematic-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Parallax Elements */
+[data-parallax] {
+    will-change: transform;
+    transition: transform 0.05s linear;
+}
+
+/* Scale on Scroll */
+[data-scale-scroll] {
+    will-change: transform, opacity;
+    transition:
+        transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.15s ease;
+}
+
+/* Text Reveal Animation */
+[data-text-reveal] {
+    overflow: hidden;
+}
+
+[data-text-reveal] .reveal-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    transition:
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--word-index) * 0.05s);
+}
+
+[data-text-reveal].text-revealed .reveal-word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Horizontal Scroll Section */
+[data-horizontal-scroll] {
+    overflow: hidden;
+    position: relative;
+}
+
+.horizontal-content {
+    display: flex;
+    gap: 32px;
+    will-change: transform;
+    transition: transform 0.15s linear;
+}
+
+/* Stagger Delays for Children */
+.stagger-children>* {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-children.revealed>*:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.stagger-children.revealed>*:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.stagger-children.revealed>*:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.stagger-children.revealed>*:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+.stagger-children.revealed>*:nth-child(5) {
+    transition-delay: 0.4s;
+}
+
+.stagger-children.revealed>*:nth-child(6) {
+    transition-delay: 0.5s;
+}
+
+.stagger-children.revealed>* {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cinematic Section Transitions */
+.cinematic-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.cinematic-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, var(--color-bg-primary) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.cinematic-section.active::before {
+    opacity: 1;
+}
+
+/* Blur Reveal */
+.blur-reveal {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateY(40px);
+    transition:
+        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blur-reveal.revealed {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Clip Reveal */
+.clip-reveal {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.clip-reveal.revealed {
+    clip-path: inset(0 0 0 0);
+}
+
+/* Wipe Reveal */
+.wipe-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.wipe-reveal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg-primary);
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.wipe-reveal.revealed::after {
+    transform: scaleX(0);
+}
+
+/* Split Text Reveal */
+.split-reveal {
+    overflow: hidden;
+}
+
+.split-reveal-line {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-reveal.revealed .split-reveal-line {
+    transform: translateY(0);
+}
+
+/* Dramatic Scale */
+.dramatic-scale {
+    opacity: 0;
+    transform: scale(0.7);
+    transition:
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dramatic-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Spin Reveal */
+.spin-reveal {
+    opacity: 0;
+    transform: rotate(-10deg) translateY(40px);
+    transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spin-reveal.revealed {
+    opacity: 1;
+    transform: rotate(0) translateY(0);
+}
+
+/* Floating Elements */
+.float-element {
+    animation: cinematicFloat 6s ease-in-out infinite;
+}
+
+@keyframes cinematicFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+
+    75% {
+        transform: translateY(10px) rotate(-1deg);
+    }
+}
+
+/* Pulse Glow */
+.pulse-glow {
+    animation: cinematicPulse 3s ease-in-out infinite;
+}
+
+@keyframes cinematicPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(255, 51, 102, 0.4), 0 0 60px rgba(124, 58, 237, 0.2);
+    }
+}
+
+/* Section Fade In */
+.section-fade {
+    opacity: 0;
+    transform: translateY(100px);
+    transition:
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-fade.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Marquee Animation */
+.marquee {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive - Reduce motion on mobile */
+@media (max-width: 768px) {
+
+    [data-reveal],
+    .cinematic-reveal,
+    .blur-reveal,
+    .clip-reveal,
+    .dramatic-scale,
+    .spin-reveal {
+        transition-duration: 0.6s;
+    }
+
+    [data-reveal="up"],
+    [data-reveal="down"] {
+        transform: translateY(40px);
+    }
+
+    [data-reveal="left"],
+    [data-reveal="right"] {
+        transform: translateX(30px);
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+    [data-reveal],
+    .cinematic-reveal,
+    .blur-reveal,
+    .clip-reveal,
+    .wipe-reveal,
+    .dramatic-scale,
+    .spin-reveal,
+    .section-fade,
+    [data-parallax],
+    [data-scale-scroll],
+    [data-text-reveal] .reveal-word,
+    .stagger-children>* {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        clip-path: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .wipe-reveal::after,
+    .marquee-content {
+        animation: none !important;
+        transform: none !important;
+    }
+}

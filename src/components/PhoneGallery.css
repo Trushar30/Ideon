@@ -1,0 +1,375 @@
+/* 3D Phone Gallery Styles */
+
+.phone-gallery {
+    position: relative;
+    padding: var(--space-16) 0;
+    overflow: hidden;
+}
+
+/* Background floating phones */
+.phone-gallery-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-phone {
+    position: absolute;
+    opacity: 0.15;
+    filter: blur(2px);
+    animation: floatPhone 8s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.floating-phone-1 {
+    top: 10%;
+    left: 5%;
+    transform: rotate(-15deg) scale(0.4);
+}
+
+.floating-phone-2 {
+    top: 20%;
+    right: 8%;
+    transform: rotate(12deg) scale(0.35);
+}
+
+.floating-phone-3 {
+    bottom: 15%;
+    left: 10%;
+    transform: rotate(-8deg) scale(0.3);
+}
+
+@keyframes floatPhone {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--rotation, -15deg)) scale(var(--scale, 0.4));
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(calc(var(--rotation, -15deg) + 3deg)) scale(var(--scale, 0.4));
+    }
+}
+
+.phone-frame-mini {
+    width: 120px;
+    height: 250px;
+    background: linear-gradient(145deg, #2a2a3a, #1a1a25);
+    border-radius: 24px;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.phone-screen-mini {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.phone-screen-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Main phone showcase */
+.phone-showcase {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    min-height: 550px;
+}
+
+.phone-3d-container {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: phoneFloat 4s ease-in-out infinite;
+}
+
+@keyframes phoneFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotateY(-5deg) rotateX(2deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotateY(5deg) rotateX(-2deg);
+    }
+}
+
+/* Phone frame */
+.phone-frame {
+    position: relative;
+    width: 280px;
+    height: 580px;
+    background: linear-gradient(145deg, #3a3a4a, #1a1a25);
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow:
+        0 50px 100px -20px rgba(0, 0, 0, 0.6),
+        0 30px 60px -30px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+}
+
+/* Phone notch */
+.phone-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 28px;
+    background: #000;
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.notch-speaker {
+    width: 50px;
+    height: 4px;
+    background: #1a1a25;
+    border-radius: 2px;
+}
+
+.notch-camera {
+    width: 10px;
+    height: 10px;
+    background: #1a1a25;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #2a2a3a;
+}
+
+/* Phone screen */
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 36px;
+    overflow: hidden;
+    position: relative;
+}
+
+.phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.phone-3d-container:hover .phone-screen img {
+    transform: scale(1.02);
+}
+
+/* Screen shine effect */
+.phone-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 40%,
+            transparent 60%,
+            rgba(255, 255, 255, 0.03) 100%);
+    pointer-events: none;
+}
+
+/* Phone buttons */
+.phone-button-power {
+    position: absolute;
+    top: 120px;
+    right: -3px;
+    width: 4px;
+    height: 60px;
+    background: linear-gradient(to bottom, #3a3a4a, #2a2a35);
+    border-radius: 0 2px 2px 0;
+}
+
+.phone-button-volume-up {
+    position: absolute;
+    top: 100px;
+    left: -3px;
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to bottom, #3a3a4a, #2a2a35);
+    border-radius: 2px 0 0 2px;
+}
+
+.phone-button-volume-down {
+    position: absolute;
+    top: 160px;
+    left: -3px;
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to bottom, #3a3a4a, #2a2a35);
+    border-radius: 2px 0 0 2px;
+}
+
+/* Phone reflection */
+.phone-reflection {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    transform: scaleY(-1) translateY(10px);
+    opacity: 0.15;
+    filter: blur(2px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+}
+
+.reflection-frame {
+    box-shadow: none;
+}
+
+/* Glow effect */
+.phone-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle,
+            var(--color-accent-primary-glow) 0%,
+            var(--color-accent-secondary-glow) 30%,
+            transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(60px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Controls */
+.phone-gallery-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+}
+
+.gallery-nav-btn {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.gallery-nav-btn:hover {
+    background: var(--color-bg-card-hover);
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+    transform: scale(1.1);
+}
+
+.gallery-nav-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.gallery-dots {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.gallery-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--color-border);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    padding: 0;
+}
+
+.gallery-dot:hover {
+    background: var(--color-text-muted);
+}
+
+.gallery-dot.active {
+    width: 32px;
+    background: var(--color-accent-gradient);
+    box-shadow: 0 0 15px var(--color-accent-primary-glow);
+}
+
+/* Caption */
+.phone-gallery-caption {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-4);
+    font-weight: var(--font-medium);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .phone-showcase {
+        min-height: 450px;
+        perspective: 800px;
+    }
+
+    .phone-frame {
+        width: 220px;
+        height: 460px;
+        border-radius: 36px;
+        padding: 10px;
+    }
+
+    .phone-notch {
+        width: 100px;
+        height: 24px;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .phone-screen {
+        border-radius: 28px;
+    }
+
+    .floating-phone {
+        display: none;
+    }
+
+    .phone-glow {
+        width: 300px;
+        height: 300px;
+    }
+
+    .phone-reflection {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-frame {
+        width: 180px;
+        height: 380px;
+        border-radius: 30px;
+        padding: 8px;
+    }
+
+    .phone-screen {
+        border-radius: 24px;
+    }
+}

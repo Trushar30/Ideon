@@ -1,0 +1,204 @@
+# Ideon Portfolio Website - Implementation Plan
+
+Build a stunning, premium dark-themed portfolio website for Ideon - a platform where college students discover and connect for project development services.
+
+## User Review Required
+
+> [!IMPORTANT]
+> Please review the proposed design direction and tech stack before I proceed with implementation.
+
+**Design Approach:**
+- Premium dark theme with crimson/electric blue accents
+- Portfolio-first layout with projects as the hero
+- Smooth animations and micro-interactions
+- Mobile-responsive design
+
+**Questions:**
+1. Should I use your existing project assets (AgriConnect screenshots) in the initial build?
+2. Do you have specific contact information (email, WhatsApp, LinkedIn) to include?
+
+---
+
+## Proposed Changes
+
+### Tech Stack
+- **Framework**: Vite + React (fast development, great DX)
+- **Styling**: Vanilla CSS with CSS Variables (as per guidelines)
+- **Animations**: CSS animations + Intersection Observer for scroll effects
+- **Routing**: React Router for multi-page navigation
+- **Deployment**: Ready for Vercel/Netlify
+
+---
+
+### Component Structure
+
+#### [NEW] [src/](file:///Users/trushargpatel/Downloads/Ideon/website/src/)
+Main source directory for the React application.
+
+#### [NEW] [index.html](file:///Users/trushargpatel/Downloads/Ideon/website/index.html)
+Entry point HTML file with meta tags and SEO setup.
+
+#### [NEW] [src/index.css](file:///Users/trushargpatel/Downloads/Ideon/website/src/index.css)
+Design system including:
+- CSS custom properties for colors, typography, spacing
+- Dark theme palette (charcoal background, crimson/blue accents)
+- Animation utilities and scroll-based effects
+- Responsive breakpoints
+
+#### [NEW] [src/App.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/App.jsx)
+Main application with React Router setup.
+
+---
+
+### Pages
+
+#### [NEW] [src/pages/Home.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/pages/Home.jsx)
+Landing page with:
+- Full-screen hero section with tagline "Ideas to Deployed Reality"
+- About/Philosophy section explaining Ideon's approach
+- Services cards (Web Dev, AI/ML, Backend, Academic Projects, UI/UX)
+- Featured projects grid with hover effects
+- Footer with links
+
+#### [NEW] [src/pages/Projects.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/pages/Projects.jsx)
+Portfolio showcase with:
+- Filterable project grid by category/tech stack
+- Project cards with thumbnails, titles, tech tags, status badges
+
+#### [NEW] [src/pages/ProjectDetail.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/pages/ProjectDetail.jsx)
+Individual project page with:
+- Project overview and problem statement
+- Solution description
+- Tech stack visualization
+- Screenshot gallery with lightbox
+- Live demo link
+- Connect CTA
+
+#### [NEW] [src/pages/Connect.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/pages/Connect.jsx)
+Contact page with:
+- Simple inquiry form (Name, Purpose, Contact)
+- Direct links (Email, WhatsApp, LinkedIn, GitHub)
+- Clear disclaimer about external project delivery
+
+#### [NEW] [src/pages/About.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/pages/About.jsx)
+About page with:
+- Team introduction
+- Skills & technologies
+- What makes Ideon different
+
+---
+
+### Components
+
+#### [NEW] [src/components/Navbar.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/components/Navbar.jsx)
+Sticky navigation with:
+- Logo
+- Nav links: Home, Projects, Services, About, Connect
+- Mobile hamburger menu
+- Subtle Connect CTA button
+
+#### [NEW] [src/components/Hero.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/components/Hero.jsx)
+Full-screen hero with:
+- Bold headline
+- Animated gradient/particle background
+- "View Work" and "Connect" CTAs
+
+#### [NEW] [src/components/ProjectCard.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/components/ProjectCard.jsx)
+Project card with:
+- Thumbnail image
+- Title
+- Tech stack tags
+- Status badge (Deployed/Prototype)
+- Hover elevation effect
+
+#### [NEW] [src/components/ServiceCard.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/components/ServiceCard.jsx)
+Service capability card with:
+- Icon
+- Title
+- Short description
+- Tech stack icons
+
+#### [NEW] [src/components/Footer.jsx](file:///Users/trushargpatel/Downloads/Ideon/website/src/components/Footer.jsx)
+Footer with:
+- Brand tagline
+- Navigation links
+- Social links
+- Copyright
+
+---
+
+### Data
+
+#### [NEW] [src/data/projects.js](file:///Users/trushargpatel/Downloads/Ideon/website/src/data/projects.js)
+Project data including AgriConnect and placeholder projects:
+- Title, description, problem statement
+- Tech stack
+- Screenshots paths
+- Demo links
+- Status
+
+#### [NEW] [src/data/services.js](file:///Users/trushargpatel/Downloads/Ideon/website/src/data/services.js)
+Service categories with descriptions.
+
+---
+
+## Visual Design Reference
+
+```
+┌─────────────────────────────────────────────────────┐
+│  🔲 Ideon    Home | Projects | About | Connect [CTA]│ <- Sticky Nav
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│          IDEAS TO DEPLOYED REALITY                  │ <- Hero
+│    We transform student concepts into working       │
+│            professional projects                    │
+│       [View Work]        [Connect]                  │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  ◆ What is Ideon?                                   │ <- About Section
+│    Not a marketplace. A proof of work.              │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  ◆ Our Expertise                                    │ <- Services
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐       │
+│  │  Web   │ │ AI/ML  │ │Backend │ │Academic│       │
+│  │  Dev   │ │Projects│ │Systems │ │Projects│       │
+│  └────────┘ └────────┘ └────────┘ └────────┘       │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  ◆ Featured Work                                    │ <- Projects Grid
+│  ┌──────────────┐  ┌──────────────┐                │
+│  │  AgriConnect │  │   Project 2  │                │
+│  │  [Deployed]  │  │ [Prototype]  │                │
+│  │  Flutter     │  │   Next.js    │                │
+│  └──────────────┘  └──────────────┘                │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│  Ideon © 2026 | Email | WhatsApp | LinkedIn         │ <- Footer
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## Verification Plan
+
+### Development Verification
+- Run `npm run dev` to start local development server
+- Navigate through all pages ensuring proper routing
+- Test responsive design at mobile (375px), tablet (768px), desktop (1200px+)
+- Verify all animations work smoothly
+
+### Browser Testing
+- Open website in browser
+- Test navigation between pages
+- Test project card hover effects
+- Test contact form UI
+- Verify external links work
+
+### Manual Verification
+- Review visual design matches UI/UX document specifications
+- Ensure dark theme, typography, and color palette are correct
+- Verify project screenshots load correctly

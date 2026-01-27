@@ -126,9 +126,14 @@ function Band({ maxSpeed = 50, minSpeed = 10, position = [0, 0, 0], text = "X", 
                                 map-anisotropy={16}
                                 clearcoat={1}
                                 clearcoatRoughness={0.15}
-                                roughness={0.3}
-                                metalness={0.5}
-                                color="#12121a" // Dark theme tertiary background
+                                roughness={0.2}
+                                metalness={0.1}
+                                color="#ffffff"
+                                transmission={0.9}
+                                transparent={true}
+                                opacity={1}
+                                thickness={1.5}
+                                ior={1.5}
                             />
                         </mesh>
                         <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3}>
@@ -137,7 +142,7 @@ function Band({ maxSpeed = 50, minSpeed = 10, position = [0, 0, 0], text = "X", 
                         <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
 
                         {/* Added Text */}
-                        <Text
+                        {/* <Text
                             position={[0, 0.15, 0.02]}
                             fontSize={0.08}
                             color="#fafafa" // Text primary
@@ -156,7 +161,7 @@ function Band({ maxSpeed = 50, minSpeed = 10, position = [0, 0, 0], text = "X", 
                             font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff"
                         >
                             {subText}
-                        </Text>
+                        </Text> */}
 
                     </group>
                 </RigidBody >

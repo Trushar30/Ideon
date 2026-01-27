@@ -102,7 +102,7 @@
 }
 
 .story-card {
-    background: var(--color-bg-card);
+    background: transparent;
     backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
@@ -163,7 +163,7 @@
 }
 
 .value-card {
-    background: var(--color-bg-card);
+    background: transparent;
     backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
@@ -219,7 +219,7 @@
 }
 
 .skill-category {
-    background: var(--color-bg-card);
+    background: transparent;
     backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
@@ -298,7 +298,7 @@
     justify-content: center;
     gap: var(--space-3);
     padding: var(--space-4);
-    background: var(--color-bg-card);
+    background: transparent;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     font-size: var(--text-base);

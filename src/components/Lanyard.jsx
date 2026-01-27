@@ -168,7 +168,7 @@ function Band({ maxSpeed = 50, minSpeed = 10, position = [0, 0, 0], text = "X", 
             </group >
             <mesh ref={band}>
                 <meshLineGeometry />
-                <meshLineMaterial color="#ff3366" depthTest={false} resolution={[1000, 1000]} useMap map={texture} repeat={[-4, 1]} lineWidth={1} />
+                <meshLineMaterial color="#ffffff" depthTest={false} resolution={[1000, 1000]} useMap map={texture} repeat={[-4, 1]} lineWidth={1} />
             </mesh>
         </>
     )

@@ -31,8 +31,8 @@ function Connect() {
         {
             icon: 'email',
             label: 'Email',
-            value: 'contact@ideon.dev',
-            href: 'mailto:contact@ideon.dev',
+            value: 'ideon2026@gmail.com',
+            href: 'mailto:ideon2026@gmail.com',
             description: 'For detailed project discussions'
         },
         {

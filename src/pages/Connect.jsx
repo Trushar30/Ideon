@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
 import Icon from '../components/Icons'
 import { ScrollReveal, AnimatedText } from '../hooks/useScrollAnimation'
 import './Connect.css'
@@ -11,6 +12,8 @@ function Connect() {
         message: ''
     })
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isSending, setIsSending] = useState(false)
+    const form = useRef()
 
     const handleChange = (e) => {
         setFormData({
@@ -21,10 +24,26 @@ function Connect() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('Form submitted:', formData)
-        setIsSubmitted(true)
-        setTimeout(() => setIsSubmitted(false), 3000)
-        setFormData({ name: '', email: '', projectType: '', message: '' })
+        setIsSending(true)
+
+        // Replace these with your actual EmailJS Service ID, Template ID, and Public Key
+        // You can get them from https://dashboard.emailjs.com/
+        const SERVICE_ID = 'service_bts1o1j'
+        const TEMPLATE_ID = 'template_5d1x3rr'
+        const PUBLIC_KEY = 'W04TYoTzsNsauiNXs'
+
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+            .then((result) => {
+                console.log('Email sent:', result.text)
+                setIsSubmitted(true)
+                setFormData({ name: '', email: '', projectType: '', message: '' })
+            }, (error) => {
+                console.log('Email error:', error.text)
+                alert('Failed to send message. Please try again or email us directly.')
+            })
+            .finally(() => {
+                setIsSending(false)
+            })
     }
 
     const contactMethods = [
@@ -106,15 +125,25 @@ function Connect() {
                             </p>
 
                             {isSubmitted ? (
-                                <div className="form-success">
-                                    <span className="success-icon">
-                                        <Icon name="check" size={24} />
-                                    </span>
-                                    <h3>Message Sent!</h3>
-                                    <p>Thank you for reaching out. We'll get back to you soon.</p>
+                                <div className="form-success holographic-card">
+                                    <div className="success-content">
+                                        <span className="success-icon-animated">
+                                            <Icon name="check" size={32} />
+                                        </span>
+                                        <h3>Message Transmitted</h3>
+                                        <p>Your signal has been received. We'll establish a connection shortly.</p>
+                                        <button
+                                            className="btn btn-sm btn-outline"
+                                            onClick={() => setIsSubmitted(false)}
+                                            style={{ marginTop: '1rem' }}
+                                        >
+                                            Send Another
+                                        </button>
+                                    </div>
+                                    <div className="holo-scan"></div>
                                 </div>
                             ) : (
-                                <form onSubmit={handleSubmit} className="contact-form">
+                                <form ref={form} onSubmit={handleSubmit} className="contact-form">
                                     <div className="form-group">
                                         <label htmlFor="name">Your Name</label>
                                         <input
@@ -125,6 +154,7 @@ function Connect() {
                                             onChange={handleChange}
                                             placeholder="John Doe"
                                             required
+                                            disabled={isSending}
                                         />
                                     </div>
 
@@ -138,6 +168,7 @@ function Connect() {
                                             onChange={handleChange}
                                             placeholder="john@example.com"
                                             required
+                                            disabled={isSending}
                                         />
                                     </div>
 
@@ -149,6 +180,7 @@ function Connect() {
                                             value={formData.projectType}
                                             onChange={handleChange}
                                             required
+                                            disabled={isSending}
                                         >
                                             <option value="">Select a project type</option>
                                             {projectTypes.map((type) => (
@@ -167,11 +199,20 @@ function Connect() {
                                             placeholder="Describe your project idea, requirements, or any questions you have..."
                                             rows="5"
                                             required
+                                            disabled={isSending}
                                         />
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary btn-lg">
-                                        Send Message
+                                    <button
+                                        type="submit"
+                                        className={`btn btn-primary btn-lg launch-btn ${isSending ? 'launching' : ''}`}
+                                        disabled={isSending}
+                                    >
+                                        <span className="btn-text">
+                                            {isSending ? 'Launching...' : 'Launch Message'}
+                                        </span>
+                                        {!isSending && <Icon name="arrow" size={20} />}
+                                        {isSending && <div className="rocket-loader"></div>}
                                     </button>
                                 </form>
                             )}

@@ -103,6 +103,39 @@ export const projects = [
         architecture: 'Lightweight local-first architecture with efficient state management.',
         hackathon: null,
         team: null
+    },
+    {
+        id: 'zeno',
+        title: 'Zeno',
+        subtitle: 'Digital Experiences Portfolio',
+        status: 'deployed',
+        category: 'web',
+        featured: true,
+        thumbnail: '/Projects/Zeno/home.png',
+        problem: 'Designers and agencies need a stunning, modern platform to showcase their portfolio work and digital experiences in a way that reflects their design expertise and creativity.',
+        description: 'Zeno is a premium design portfolio website featuring cutting-edge UI/UX work, showcasing digital experiences with minimalist aesthetics, spatial computing concepts, and modern design principles. Built with a focus on visual excellence and user experience.',
+        features: [
+            'Immersive Portfolio Showcase',
+            'Minimalist & Brutalist Design Elements',
+            'Spatial Computing Demonstrations',
+            'Project Case Studies',
+            'Responsive Design System',
+            'Smooth Animations & Transitions'
+        ],
+        techStack: [
+            { name: 'React', color: '#61DAFB' },
+            { name: 'Vite', color: '#646CFF' },
+            { name: 'CSS3', color: '#1572B6' },
+            { name: 'JavaScript', color: '#F7DF1E' }
+        ],
+        screenshots: [
+            { src: '/Projects/Zeno/home.png', alt: 'Zeno Homepage' }
+        ],
+        demoLink: 'https://zeno.ideon2026.me',
+        liveUrl: 'https://zeno.ideon2026.me',
+        architecture: 'Modern frontend architecture with React and Vite, featuring advanced CSS animations, responsive layouts, and optimized performance for a premium user experience.',
+        hackathon: null,
+        team: null
     }
 ];
 

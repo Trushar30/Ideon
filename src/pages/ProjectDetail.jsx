@@ -137,14 +137,14 @@ function ProjectDetail() {
                     <div className="container">
                         <div className="section-header scroll-animate">
                             <span className="section-label">Visual Preview</span>
-                            <h2 className="section-title">App Screenshots</h2>
+                            <h2 className="section-title">Screenshots</h2>
                             <p className="section-subtitle">
-                                Experience the app through our interactive device showcase
+                                Experience {project.category === 'mobile' ? 'the app' : 'the website'} through our interactive device showcase
                             </p>
                         </div>
 
                         <div className="scroll-animate">
-                            <PhoneGallery screenshots={project.screenshots} />
+                            <PhoneGallery screenshots={project.screenshots} category={project.category} />
                         </div>
                     </div>
                 </section>

@@ -216,6 +216,167 @@
     border-radius: 2px 0 0 2px;
 }
 
+/* Laptop Mockup - For Web Projects */
+.laptop-frame {
+    position: relative;
+    width: 600px;
+    transform-style: preserve-3d;
+}
+
+.laptop-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(145deg, #2a2a3a, #1a1a25);
+    border-radius: 12px 12px 4px 4px;
+    padding: 8px;
+    box-shadow:
+        0 40px 80px -20px rgba(0, 0, 0, 0.7),
+        0 25px 50px -25px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.laptop-bezel {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.laptop-camera {
+    width: 6px;
+    height: 6px;
+    background: #1a1a25;
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 0 2px #2a2a3a,
+        0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+.laptop-screen-content {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.laptop-screen-content img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.5s ease;
+    animation: laptopScroll 30s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes laptopScroll {
+    0% {
+        -webkit-transform: translate3d(0, 0%, 0);
+        transform: translate3d(0, 0%, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, calc(-100% + 375px), 0);
+        transform: translate3d(0, calc(-100% + 375px), 0);
+    }
+}
+
+.phone-3d-container:hover .laptop-screen-content img {
+    animation-play-state: paused;
+}
+
+/* Optimize for low-end devices and accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .laptop-screen-content img {
+        animation: none;
+        will-change: auto;
+    }
+
+    .floating-phone {
+        animation: none;
+    }
+
+    .phone-3d-container {
+        animation: none;
+    }
+}
+
+/* Screen shine effect for laptop */
+.laptop-screen-content::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 40%,
+            transparent 60%,
+            rgba(255, 255, 255, 0.03) 100%);
+    pointer-events: none;
+}
+
+.laptop-base {
+    position: relative;
+    width: 110%;
+    height: 20px;
+    left: -5%;
+    background: linear-gradient(180deg, #2a2a3a 0%, #1a1a25 100%);
+    border-radius: 0 0 16px 16px;
+    box-shadow:
+        0 10px 30px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: perspective(800px) rotateX(-15deg);
+    transform-origin: top center;
+}
+
+.laptop-trackpad {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Mini laptop for floating background */
+.laptop-frame-mini {
+    width: 180px;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(145deg, #2a2a3a, #1a1a25);
+    border-radius: 8px 8px 2px 2px;
+    padding: 5px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.laptop-screen-mini {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.laptop-screen-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 /* Phone reflection */
 .phone-reflection {
     position: absolute;

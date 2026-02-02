@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './PhoneGallery.css'
 
-function PhoneGallery({ screenshots }) {
+function PhoneGallery({ screenshots, category = 'mobile' }) {
     const [activeIndex, setActiveIndex] = useState(0)
 
     if (!screenshots || screenshots.length === 0) return null
@@ -14,9 +14,12 @@ function PhoneGallery({ screenshots }) {
         setActiveIndex((prev) => (prev === screenshots.length - 1 ? 0 : prev + 1))
     }
 
+    // Determine if we should show laptop or phone based on category
+    const isWebProject = category === 'web'
+
     return (
         <div className="phone-gallery">
-            {/* Floating phones background */}
+            {/* Floating devices background */}
             <div className="phone-gallery-bg">
                 {screenshots.slice(0, 3).map((_, i) => (
                     <div
@@ -24,8 +27,8 @@ function PhoneGallery({ screenshots }) {
                         className={`floating-phone floating-phone-${i + 1}`}
                         style={{ '--delay': `${i * 0.5}s` }}
                     >
-                        <div className="phone-frame-mini">
-                            <div className="phone-screen-mini">
+                        <div className={isWebProject ? "laptop-frame-mini" : "phone-frame-mini"}>
+                            <div className={isWebProject ? "laptop-screen-mini" : "phone-screen-mini"}>
                                 <img
                                     src={screenshots[(activeIndex + i + 1) % screenshots.length].src}
                                     alt=""
@@ -36,29 +39,56 @@ function PhoneGallery({ screenshots }) {
                 ))}
             </div>
 
-            {/* Main phone showcase */}
+            {/* Main device showcase */}
             <div className="phone-showcase">
                 <div className="phone-3d-container">
-                    <div className="phone-frame">
-                        {/* Phone notch */}
-                        <div className="phone-notch">
-                            <div className="notch-speaker"></div>
-                            <div className="notch-camera"></div>
-                        </div>
+                    {isWebProject ? (
+                        /* Laptop Mockup for Web Projects */
+                        <div className="laptop-frame">
+                            {/* Laptop screen */}
+                            <div className="laptop-screen">
+                                {/* Screen bezel */}
+                                <div className="laptop-bezel">
+                                    <div className="laptop-camera"></div>
+                                </div>
 
-                        {/* Phone screen */}
-                        <div className="phone-screen">
-                            <img
-                                src={screenshots[activeIndex].src}
-                                alt={screenshots[activeIndex].alt}
-                            />
-                        </div>
+                                {/* Screen content */}
+                                <div className="laptop-screen-content">
+                                    <img
+                                        src={screenshots[activeIndex].src}
+                                        alt={screenshots[activeIndex].alt}
+                                    />
+                                </div>
+                            </div>
 
-                        {/* Phone buttons */}
-                        <div className="phone-button-power"></div>
-                        <div className="phone-button-volume-up"></div>
-                        <div className="phone-button-volume-down"></div>
-                    </div>
+                            {/* Laptop base/keyboard */}
+                            <div className="laptop-base">
+                                <div className="laptop-trackpad"></div>
+                            </div>
+                        </div>
+                    ) : (
+                        /* Phone Mockup for Mobile Projects */
+                        <div className="phone-frame">
+                            {/* Phone notch */}
+                            <div className="phone-notch">
+                                <div className="notch-speaker"></div>
+                                <div className="notch-camera"></div>
+                            </div>
+
+                            {/* Phone screen */}
+                            <div className="phone-screen">
+                                <img
+                                    src={screenshots[activeIndex].src}
+                                    alt={screenshots[activeIndex].alt}
+                                />
+                            </div>
+
+                            {/* Phone buttons */}
+                            <div className="phone-button-power"></div>
+                            <div className="phone-button-volume-up"></div>
+                            <div className="phone-button-volume-down"></div>
+                        </div>
+                    )}
 
                     {/* Reflection */}
                     <div className="phone-reflection">

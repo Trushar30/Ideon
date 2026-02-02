@@ -44,7 +44,7 @@ export const projects = [
         status: 'prototype',
         category: 'mobile',
         featured: true,
-        thumbnail: null,
+        thumbnail: '/Projects/ExamSprint/home.jpg',
         problem: 'Students struggle with effective exam preparation, lacking personalized study plans and AI-powered tools to help them understand complex topics quickly.',
         description: 'Exam Sprint is an intelligent mobile application that helps students prepare for exams efficiently using AI-powered summaries, question generation, and personalized study schedules.',
         features: [
@@ -61,7 +61,12 @@ export const projects = [
             { name: 'Firebase', color: '#FFCA28' },
             { name: 'ChromaDB', color: '#00BCD4' }
         ],
-        screenshots: [],
+        screenshots: [
+            { src: '/Projects/ExamSprint/login.jpg', alt: 'Login Screen' },
+            { src: '/Projects/ExamSprint/home.jpg', alt: 'Home Dashboard' },
+            { src: '/Projects/ExamSprint/class.jpg', alt: 'Class Management' },
+            { src: '/Projects/ExamSprint/ai.jpg', alt: 'AI Study Assistant' }
+        ],
         demoLink: null,
         architecture: 'Clean architecture with separation of concerns, integrating Gemini AI for intelligent features and Firebase for backend services.',
         hackathon: null,

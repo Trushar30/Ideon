@@ -74,7 +74,7 @@ export const projects = [
         status: 'deployed',
         category: 'mobile',
         featured: false,
-        thumbnail: null,
+        thumbnail: '/Projects/SkipSmart/Home.png',
         problem: 'Students need to track their attendance and calculate how many classes they can skip while maintaining the required attendance percentage.',
         description: 'SkipSmart is a clever attendance management app that helps students calculate safe bunking limits based on their timetable and holiday schedules.',
         features: [
@@ -89,7 +89,11 @@ export const projects = [
             { name: 'Dart', color: '#0175C2' },
             { name: 'Local Storage', color: '#607D8B' }
         ],
-        screenshots: [],
+        screenshots: [
+            { src: '/Projects/SkipSmart/Login.jpg', alt: 'Login Screen' },
+            { src: '/Projects/SkipSmart/Home.png', alt: 'Home Dashboard' },
+            { src: '/Projects/SkipSmart/TimeTable.jpg', alt: 'Timetable View' }
+        ],
         demoLink: null,
         architecture: 'Lightweight local-first architecture with efficient state management.',
         hackathon: null,

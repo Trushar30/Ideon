@@ -3,7 +3,7 @@
 .phone-gallery {
     position: relative;
     padding: var(--space-16) 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Background floating phones */

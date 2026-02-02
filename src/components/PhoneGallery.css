@@ -82,7 +82,8 @@
     justify-content: center;
     align-items: center;
     perspective: 1000px;
-    min-height: 550px;
+    min-height: 650px;
+    padding: 40px 0;
 }
 
 .phone-3d-container {

@@ -136,6 +136,42 @@ export const projects = [
         architecture: 'Modern frontend architecture with React and Vite, featuring advanced CSS animations, responsive layouts, and optimized performance for a premium user experience.',
         hackathon: null,
         team: null
+    },
+    {
+        id: 'aura',
+        title: 'Aura',
+        subtitle: 'Winter 2026 Fashion Platform',
+        status: 'deployed',
+        category: 'web',
+        featured: true,
+        thumbnail: '/Projects/Aura/home.png',
+        problem: 'Fashion brands need a cutting-edge digital presence that reflects their bold, futuristic vision while creating immersive shopping experiences for Gen-Z audiences.',
+        description: 'AURA is a premium, futuristic fashion e-commerce platform showcasing modern streetwear and high-tech winter collections. Built with a cyberpunk-inspired UI featuring dark mode aesthetics, neon accents, and smooth animations that create an immersive brand experience.',
+        features: [
+            'Futuristic Techwear Collections',
+            'Vapor Tech - Lightweight Puffers',
+            'Core System - Premium Wool Coats',
+            'Nebula Knits - Comfort Essentials',
+            'Interactive Spatial UI Design',
+            'Cyberpunk Terminal Aesthetics',
+            'Smooth Framer Motion Animations'
+        ],
+        techStack: [
+            { name: 'React', color: '#61DAFB' },
+            { name: 'Tailwind CSS', color: '#06B6D4' },
+            { name: 'Framer Motion', color: '#FF0055' },
+            { name: 'JavaScript', color: '#F7DF1E' }
+        ],
+        screenshots: [
+            { src: '/Projects/Aura/home.png', alt: 'Aura Homepage - Winter x Gen-Z Hero' },
+            { src: '/Projects/Aura/artifacts.png', alt: 'Aura Artifacts - Techwear Collections' },
+            { src: '/Projects/Aura/manifesto.png', alt: 'Aura Manifesto - Brand Vision' }
+        ],
+        demoLink: 'https://aura-tau-two.vercel.app',
+        liveUrl: 'https://aura-tau-two.vercel.app',
+        architecture: 'Modern frontend architecture with React and Tailwind CSS, featuring Framer Motion animations, dark mode aesthetics with neon lime accents, and responsive layouts optimized for a premium fashion brand experience.',
+        hackathon: null,
+        team: null
     }
 ];
 

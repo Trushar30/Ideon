@@ -22,9 +22,9 @@ function Footer() {
 
     const socialLinks = [
         { href: 'mailto:ideon2026@gmail.com', label: 'Email', icon: 'email' },
-        { href: 'https://wa.me/919876543210', label: 'WhatsApp', icon: 'whatsapp' },
+        { href: 'https://wa.me/916352421886', label: 'WhatsApp', icon: 'whatsapp' },
         { href: 'https://linkedin.com/company/ideon', label: 'LinkedIn', icon: 'linkedin' },
-        { href: 'https://github.com/ideon', label: 'GitHub', icon: 'github' },
+        { href: 'https://github.com/ideon2026', label: 'GitHub', icon: 'github' },
     ]
 
     return (

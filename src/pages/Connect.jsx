@@ -58,7 +58,7 @@ function Connect() {
             icon: 'whatsapp',
             label: 'WhatsApp',
             value: '+91 98765 43210',
-            href: 'https://wa.me/919876543210',
+            href: 'https://wa.me/916352421886',
             description: 'Quick queries and updates'
         },
         {

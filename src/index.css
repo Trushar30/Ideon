@@ -139,6 +139,11 @@ body {
   overflow-x: hidden;
 }
 
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
 /* Typography */
 h1,
 h2,

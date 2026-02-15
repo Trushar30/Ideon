@@ -7,9 +7,12 @@ import ProjectDetail from './pages/ProjectDetail'
 import About from './pages/About'
 import Connect from './pages/Connect'
 
+import CustomCursor from './components/CustomCursor'
+
 function App() {
     return (
         <div className="app">
+            <CustomCursor />
             <Navbar />
             <main className="main-content">
                 <Routes>

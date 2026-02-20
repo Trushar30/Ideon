@@ -220,7 +220,7 @@ const CustomCursor = () => {
 
                     if (cursorRef.current) {
                         const { x, y } = cursorPos.current
-                        cursorRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${currentScale.current}) rotate(${currentRotate.current}deg)`
+                        cursorRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-25%, -5%) scale(${currentScale.current}) rotate(${currentRotate.current}deg)`
                     }
                     isIdle.current = true
 
@@ -242,7 +242,7 @@ const CustomCursor = () => {
 
             if (cursorRef.current) {
                 const { x, y } = cursorPos.current
-                cursorRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${currentScale.current}) rotate(${currentRotate.current}deg)`
+                cursorRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-25%, -5%) scale(${currentScale.current}) rotate(${currentRotate.current}deg)`
             }
 
             animationFrameId = requestAnimationFrame(animate)

@@ -4,6 +4,7 @@ const CustomCursor = () => {
     const cursorRef = useRef(null)
     const canvasRef = useRef(null)
     const [isMobile, setIsMobile] = useState(true)
+    const [isHovering, setIsHovering] = useState(false)
 
     // Check for mobile/touch device
     useEffect(() => {
@@ -101,6 +102,16 @@ const CustomCursor = () => {
             isVisible.current = true
             if (cursorRef.current) cursorRef.current.style.opacity = '1'
         }
+
+        const handleHover = (e) => {
+            const target = e.target
+            const isClickable = target.closest('a, button, [role="button"], .clickable, [style*="cursor: pointer"]') ||
+                window.getComputedStyle(target).cursor === 'pointer'
+            setIsHovering(!!isClickable)
+        }
+
+        window.addEventListener('mouseover', handleHover)
+        window.addEventListener('mouseout', () => setIsHovering(false))
 
         window.addEventListener('mousemove', onMouseMove, { passive: true })
         window.addEventListener('mousedown', onMouseDown, { passive: true })
@@ -221,11 +232,11 @@ const CustomCursor = () => {
             }
 
             // Not idle
-            const posLerp = 0.25
+            const posLerp = 0.45
             cursorPos.current.x += dx * posLerp
             cursorPos.current.y += dy * posLerp
 
-            const styleLerp = 0.15
+            const styleLerp = 0.3
             currentScale.current += ds * styleLerp
             currentRotate.current += dr * styleLerp
 
@@ -248,6 +259,7 @@ const CustomCursor = () => {
             window.removeEventListener('mouseup', onMouseUp)
             document.body.removeEventListener('mouseleave', onMouseLeave)
             document.body.removeEventListener('mouseenter', onMouseEnter)
+            window.removeEventListener('mouseover', handleHover)
             const existingStyle = document.getElementById('cursor-style')
             if (existingStyle) existingStyle.remove()
         }
@@ -278,7 +290,7 @@ const CustomCursor = () => {
                     left: 0,
                     width: '32px',
                     height: '32px',
-                    backgroundImage: 'url(/PhotoshopExtension_Image.png)',
+                    backgroundImage: `url(${isHovering ? '/hover.png' : '/PhotoshopExtension_Image.png'})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
